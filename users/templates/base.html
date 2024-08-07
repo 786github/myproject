@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}hk{% endblock %}</title>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+{% block head %} {% endblock%}
+  {% if user.is_authenticated %}
+    Hello, {{ user.username }}.
+  
+<div class="container">
+  
+  <ul class="nav bg-info">
+    <li class="nav-item">
+      <a class="nav-link link-dark" href="{% url 'users:logout' %}">logout</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link link-dark" href="{% url 'users:register' %}">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link link-dark"href="{% url 'users:login' %}">login</a>
+      </li>
+  </ul>
+  {% endif %}
+
+  {% block content %}
+  {% endblock %}
+</div>
+</body>
+</html>
